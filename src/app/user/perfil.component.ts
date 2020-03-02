@@ -1,19 +1,28 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { FormGroup, FormControl } from '@angular/forms'
+import { AuthService } from './auth.service'
 
 @Component({
-  template: `
-    <h1>Editar tu perfil</h1>
-    <hr>
-    <div class="col-md-6">
-      <h3>[Form para editar perfil va aqui]</h3>
-      <br />
-      <br />
-      <button type="submit" class="btn btn-primary">Guardar</button>
-      <button type="button" class="btn btn-default">Cancelar</button>
-    </div>
-  `,
+  templateUrl: './Perfil.component.html'
 })
 
-export class PerfilComponent {
-       
+export class PerfilComponent implements OnInit{
+  
+  firstName:FormControl
+  lastName:FormControl
+  profileForm: FormGroup
+
+  constructor(public auth:AuthService) {
+    this.firstName = new FormControl()
+    this.lastName = new FormControl()
+  }
+
+  ngOnInit()
+  {
+      this.profileForm = new FormGroup({
+          firstName: this.firstName,
+          lastName: this.lastName
+      });
+  }
+
 }
