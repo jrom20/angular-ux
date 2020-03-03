@@ -6,23 +6,7 @@ import { AuthService } from './auth.service'
   templateUrl: './Perfil.component.html'
 })
 
-export class PerfilComponent implements OnInit{
+export class PerfilComponent {
   
-  firstName:FormControl
-  lastName:FormControl
-  profileForm: FormGroup
-
-  constructor(public auth:AuthService) {
-    this.firstName = new FormControl()
-    this.lastName = new FormControl()
-  }
-
-  ngOnInit()
-  {
-      this.profileForm = new FormGroup({
-          firstName: this.firstName,
-          lastName: this.lastName
-      });
-  }
 
 }
