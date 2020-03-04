@@ -16,6 +16,11 @@ export class AuthService
         }
     }
 
+    ActualizarUsuari(firstName: string, lastName: string){
+        this.currentUser.firstName = firstName;
+        this.currentUser.lastName = lastName;
+    }
+
     isAutenticado(){
         return !!this.currentUser;
     }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AuthService } from './auth.service'
+import { Router } from '@angular/router'
 
 @Component({
   templateUrl: './Perfil.component.html',
@@ -20,7 +21,7 @@ export class PerfilComponent implements OnInit{
   lastName:FormControl
   perfilForm: FormGroup
 
-  constructor(public auth:AuthService) {
+  constructor(public auth:AuthService, private router: Router) {
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
   }
@@ -40,7 +41,8 @@ export class PerfilComponent implements OnInit{
 
   fnUpdate(formvalue){
     if(this.perfilForm.valid){
-      console.log(formvalue.firstName, formvalue.lastName);
+      this.auth.ActualizarUsuari(formvalue.firstName, formvalue.lastName);
+      this.router.navigate(['clases']);
     }
   }
 }
