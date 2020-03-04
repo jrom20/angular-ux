@@ -19,6 +19,7 @@ import { ToastrService } from './common/toastr.service'
 import { AppRoutes } from "./routes";;
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 
 
@@ -35,7 +36,8 @@ import { AuthService } from './user/auth.service';
   
   imports: [
     BrowserModule,
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(AppRoutes),
+    FormsModule
   ],
   providers: [
     ClaseService,

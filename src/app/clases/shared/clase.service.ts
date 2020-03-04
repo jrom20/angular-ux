@@ -20,6 +20,7 @@ export class ClaseService
 
         return ClasesDisponible.find(clases => clases.id === id)
     }
+    
 }
 
 const ClasesDisponible: IClase[]  = 

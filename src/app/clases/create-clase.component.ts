@@ -1,25 +1,29 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { ClaseService } from './shared/index';
 
 @Component({
-    template: `
-        <h1>Crear Nuevo Clase</h1>
-        <hr>
-        <div class="col-md-6">
-            <h3>Aqui ira nuestro formulario para crear un nuevo Clase</h3>
-            <br/>
-            <br/>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-default" (click)="fnGoBack()">Cancelar</button>
-        </div>
-    `
+    templateUrl: './create-clase.component.html',
+    styles: [`
+      em {float:right; color:#E05C65; padding-left: 10px;}
+      .error input {background-color:#E3C3C5;}
+      .error ::-webkit-input-placeholder { color: #999; }
+      .error ::-moz-placeholder { color: #999; }
+      .error :-moz-placeholder { color:#999; }
+      .error :ms-input-placeholder { color: #999; }
+    `]
 })
 export class CreateClaseComponent
 {
     isFormDirty:boolean = true
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private claseserv: ClaseService) {
 
+    }
+
+    saveClase(formvalue){
+        console.log(formvalue);
     }
 
     fnGoBack()
