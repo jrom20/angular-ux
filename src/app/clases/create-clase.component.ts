@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { ClaseService } from './shared/index';
+import { IClase } from './shared/clase.model';
 
 @Component({
     templateUrl: './create-clase.component.html',
@@ -16,10 +17,23 @@ import { ClaseService } from './shared/index';
 })
 export class CreateClaseComponent
 {
+    claseObj:IClase
     isFormDirty:boolean = true
 
     constructor(private router: Router, private claseserv: ClaseService) {
 
+    }
+
+    ngOnInit(){
+        this.claseObj = {
+            id : 9,
+            time : '10:00 pm',
+            name: 'Experiencia usuario reloaded',
+            location: {
+                campus: 'SPS',
+                room: 'LSW'
+            }
+        }
     }
 
     saveClase(formvalue){

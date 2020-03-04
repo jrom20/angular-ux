@@ -5,6 +5,8 @@
       <form [formGroup]="perfilForm" autocomplete="off" (ngSubmit)="fnUpdate(perfilForm.value)" novalidate>
         <div class="form-group" [ngClass]="{'error': NoValidateFirstName()}" >
           <label for="firstName">Nombre:</label>
+          <em *ngIf="NoValidateFirstName() && perfilForm.controls.firstName?.errors.required">Este campo es requerido</em>
+          <em *ngIf="NoValidateFirstName() && perfilForm.controls.firstName?.errors.pattern">No se permiten numeros en el nombre</em>
           <input formControlName="firstName" id="firstName" type="text" class="form-control" placeholder="Nombre..." />
         </div>
         <div class="form-group">
