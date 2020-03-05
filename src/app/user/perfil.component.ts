@@ -22,9 +22,11 @@ export class PerfilComponent implements OnInit{
   perfilForm: FormGroup
 
   constructor(public auth:AuthService, private router: Router) {
-    this.firstName = new FormControl('', Validators.required);
+    //regex - regular expressions 
+    this.firstName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]*')]);
     this.lastName = new FormControl('', Validators.required);
   }
+  
 
   ngOnInit()
   {
@@ -35,8 +37,12 @@ export class PerfilComponent implements OnInit{
   }
 
 
-  NoValidateFirstName(){
+  NoValidFirstName(){
     return this.firstName.invalid && this.firstName.touched;
+  }
+
+  NoValidLastName(){
+    return this.lastName.invalid && this.lastName.touched;
   }
 
   fnUpdate(formvalue){
