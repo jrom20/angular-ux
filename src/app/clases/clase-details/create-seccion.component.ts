@@ -29,7 +29,10 @@ export class CreateSeccionComponent implements OnInit
     }
     
     ngOnInit() {
-        
+      this.descripcion = new FormControl('', [Validators.required, Validators.maxLength(10)])   
+      this.seccionForm = new FormGroup({
+        descripcion: this.descripcion
+      });
     }
 
   
