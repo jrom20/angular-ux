@@ -7,7 +7,7 @@ import { Router } from '@angular/router'
   templateUrl: './Perfil.component.html',
   styles: [`
     em {float:right; color:#E05C65; padding-left: 10px;}
-    .error input {background-color:#E3C3C5;}
+    .error input, .error select, .error textarea {background-color:#E3C3C5;}
     .error ::-webkit-input-placeholder { color: #999; }
     .error ::-moz-placeholder { color: #999; }
     .error :-moz-placeholder { color:#999; }
@@ -22,9 +22,11 @@ export class PerfilComponent implements OnInit{
   perfilForm: FormGroup
 
   constructor(public auth:AuthService, private router: Router) {
-    this.firstName = new FormControl('', Validators.required);
+    //regex - regular expressions 
+    this.firstName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]*')]);
     this.lastName = new FormControl('', Validators.required);
   }
+  
 
   ngOnInit()
   {
@@ -35,8 +37,12 @@ export class PerfilComponent implements OnInit{
   }
 
 
-  NoValidateFirstName(){
+  NoValidFirstName(){
     return this.firstName.invalid && this.firstName.touched;
+  }
+
+  NoValidLastName(){
+    return this.lastName.invalid && this.lastName.touched;
   }
 
   fnUpdate(formvalue){

@@ -31,6 +31,7 @@ export class ClaseThumbnailComponent
     RetrieveClasses(){
         return {bold: true}
     }
+    
     handleClickMe(){
         console.log('click')
     }

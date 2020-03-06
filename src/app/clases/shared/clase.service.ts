@@ -20,6 +20,12 @@ export class ClaseService
 
         return ClasesDisponible.find(clases => clases.id === id)
     }
+
+    saveClase(nuevaClase){
+        nuevaClase.id = 564;
+        nuevaClase.secciones = [];
+        ClasesDisponible.push(nuevaClase);
+    }
     
 }
 
