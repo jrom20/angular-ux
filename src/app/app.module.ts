@@ -9,7 +9,8 @@ import {
   ClaseService,
   CreateClaseComponent,
   ClaseRouteActivator,
-  ClaseListaResolver
+  ClaseListaResolver,
+  CreateSeccionComponent
 } from './clases/index'
 
 
@@ -31,13 +32,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
     NavBarComponent,
     ClaseDetailsComponent,
     CreateClaseComponent,
-    Error404Component
+    Error404Component,
+    CreateSeccionComponent
   ],
   
   imports: [
     BrowserModule,
     RouterModule.forRoot(AppRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ClaseService,

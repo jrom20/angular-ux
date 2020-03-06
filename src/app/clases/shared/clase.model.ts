@@ -15,5 +15,7 @@ export interface ISecciones
 {
     id: number,
     name: string,
-    Profesor: string
+    Profesor: string,
+    duracion: string,
+    descripcion: string
 }
