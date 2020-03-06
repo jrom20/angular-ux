@@ -18,7 +18,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 export class CreateSeccionComponent implements OnInit
 {
     name: FormControl
-    Profesor: FormControl
+    profesor: FormControl
     duracion: FormControl
     descripcion: FormControl
     seccionForm: FormGroup

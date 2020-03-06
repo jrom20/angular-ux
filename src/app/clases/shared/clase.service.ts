@@ -22,7 +22,9 @@ export class ClaseService
     }
 
     saveClase(nuevaClase){
-
+        nuevaClase.id = 564;
+        nuevaClase.secciones = [];
+        ClasesDisponible.push(nuevaClase);
     }
     
 }
