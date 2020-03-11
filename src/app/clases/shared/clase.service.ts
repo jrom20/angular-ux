@@ -39,7 +39,11 @@ const ClasesDisponible: IClase[]  =
                 room: 'LSW',
                 campus: 'SPS'
             },
-            ImageUrl: '/assets/basic-shield.png'
+            ImageUrl: '/assets/basic-shield.png',
+            secciones: [
+                { id:1, name: 'PX-04', profesor: 'Juan Romero', duracion: '1 hora', descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus egestas nisi sem, eget posuere massa dictum quis. Nam laoreet quis urna id consequat. Donec' },
+                { id:2, name: 'PX-006', profesor: 'Juan Romero', duracion: '1 hora', descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus egestas nisi sem, eget posuere massa dictum quis. Nam laoreet quis urna id consequat. Donec' }
+            ]
         },
         {
             id: 2,

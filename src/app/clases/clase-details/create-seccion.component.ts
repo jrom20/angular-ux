@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router"
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
+    selector: 'create-seccion',
     templateUrl: './create-seccion.component.html',
     styles: [`
     em {float:right; color:#E05C65; padding-left: 10px;}
@@ -28,8 +29,15 @@ export class CreateSeccionComponent implements OnInit
 
     }
     
+    private palabrasNoValidas(control: FormControl): {[key:string]: any}
+    {
+        return control.value.includes('fresa')
+        ? {'palabrasNoValidas': 'fresa'}
+        : null;
+    }
+
     ngOnInit() {
-      this.descripcion = new FormControl('', [Validators.required, Validators.maxLength(10)])   
+      this.descripcion = new FormControl('', [Validators.required, Validators.maxLength(10), this.palabrasNoValidas])   
       this.seccionForm = new FormGroup({
         descripcion: this.descripcion
       });

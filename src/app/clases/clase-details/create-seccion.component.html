@@ -25,6 +25,7 @@
         <label for="descripcion">Descripcion:</label>
         <em *ngIf="descripcion.invalid && descripcion.dirty && descripcion?.errors.required">Este campo es requerido</em>
         <em *ngIf="descripcion.invalid && descripcion.dirty && descripcion?.errors.maxlength">No debe ser mayor a 10 caracteres</em>
+        <em *ngIf="descripcion.invalid && descripcion.dirty && descripcion?.errors.palabrasNoValidas">Palabra no valida: {{descripcion?.errors.palabrasNoValidas}}</em>
         <textarea formControlName="descripcion" id="Descripcion" rows=3 class="form-control" placeholder="Descripcion..."></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Guardar</button>

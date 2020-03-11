@@ -10,7 +10,8 @@ import {
   CreateClaseComponent,
   ClaseRouteActivator,
   ClaseListaResolver,
-  CreateSeccionComponent
+  CreateSeccionComponent,
+  SeccionListComponent
 } from './clases/index'
 
 
@@ -33,7 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
     ClaseDetailsComponent,
     CreateClaseComponent,
     Error404Component,
-    CreateSeccionComponent
+    CreateSeccionComponent,
+    SeccionListComponent
   ],
   
   imports: [
