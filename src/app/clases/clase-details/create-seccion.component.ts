@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import  { ClaseService } from "../shared/clase.service"
 import { ActivatedRoute } from "@angular/router"
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { ISecciones } from '../shared/clase.model';
 
 @Component({
     selector: 'create-seccion',
@@ -22,7 +23,9 @@ export class CreateSeccionComponent implements OnInit
     profesor: FormControl
     duracion: FormControl
     descripcion: FormControl
+
     seccionForm: FormGroup
+    seccion:ISecciones
 
     constructor(private claseService: ClaseService, private actro: ActivatedRoute)
     {
@@ -37,10 +40,28 @@ export class CreateSeccionComponent implements OnInit
     }
 
     ngOnInit() {
-      this.descripcion = new FormControl('', [Validators.required, Validators.maxLength(10), this.palabrasNoValidas])   
+      this.descripcion = new FormControl('', [Validators.required, Validators.maxLength(100)])   
+      this.profesor = new FormControl('', [Validators.required])   
+      this.duracion = new FormControl('', [Validators.required])   
+      this.name = new FormControl('', [Validators.required])   
+
       this.seccionForm = new FormGroup({
-        descripcion: this.descripcion
+        descripcion: this.descripcion,
+        name : this.name,
+        profesor: this.profesor,
+        duracion: this.duracion
       });
+    }
+
+    fnSave(formvalue){
+      this.seccion = {
+        descripcion: formvalue.descripcion,
+        duracion: formvalue.duracion,
+        id: 0,
+        name: formvalue.name,
+        profesor: formvalue.profesor
+      }
+      console.log(this.seccion)
     }
 
   
