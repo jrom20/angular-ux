@@ -22,7 +22,7 @@ import { AppRoutes } from "./routes";;
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-
+import { HttpClientModule } from '@angular/common/http'
 
 
 @NgModule({
@@ -42,7 +42,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
     BrowserModule,
     RouterModule.forRoot(AppRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     ClaseService,
