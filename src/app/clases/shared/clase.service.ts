@@ -16,7 +16,7 @@ export class ClaseService
     _headers: HttpHeaders
     getClases(): Observable<IClase[]>{
 
-        return this.http.get<IClase[]>('https://localhost:44315/clases')
+        return this.http.get<IClase[]>('/api/clases')
         .pipe(catchError(this.errorHandler<IClase[]>('getClases', [])));
 
         /*
@@ -42,9 +42,15 @@ export class ClaseService
     }
 
     saveClase(nuevaClase){
-        nuevaClase.id = 564;
+        /*nuevaClase.id = 564;
         nuevaClase.secciones = [];
         ClasesDisponible.push(nuevaClase);
+        */
+        
+         let options = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
+         return this.http.post<IClase>('/api/clases', nuevaClase, options)
+         .pipe(catchError(this.errorHandler<IClase>('saveClase')));
+        
     }
     
 }
