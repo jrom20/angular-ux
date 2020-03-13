@@ -13,7 +13,7 @@ export class ClaseService
     constructor(private http: HttpClient) {
         
     }
-    _headers: HttpHeaders
+    
     getClases(): Observable<IClase[]>{
 
         return this.http.get<IClase[]>('/api/clases')
