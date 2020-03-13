@@ -29,4 +29,9 @@ export class ClaseDetailsComponent implements OnInit
         this.addMode = true;
     }
 
+    fnMia()
+    {
+        this.addMode = false;
+    }
+
 }

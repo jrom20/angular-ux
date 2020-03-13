@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { ClaseService } from './shared/index';
 import { IClase } from './shared/clase.model';
+import { EventEmitter } from 'protractor';
 
 @Component({
     templateUrl: './create-clase.component.html',
@@ -18,7 +19,7 @@ import { IClase } from './shared/clase.model';
 export class CreateClaseComponent
 {
     claseObj:IClase
-    isFormDirty:boolean = true
+    isFormDirty:boolean = true    
 
     constructor(private router: Router, private claseserv: ClaseService) {
 

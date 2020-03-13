@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import  { ClaseService } from "../shared/clase.service"
 import { ActivatedRoute } from "@angular/router"
 import { FormGroup, FormControl, Validators } from '@angular/forms'
@@ -26,7 +26,8 @@ export class CreateSeccionComponent implements OnInit
 
     seccionForm: FormGroup
     seccion:ISecciones
-
+    @Output() outputequedefini = new EventEmitter()
+    
     constructor(private claseService: ClaseService, private actro: ActivatedRoute)
     {
 
@@ -64,5 +65,9 @@ export class CreateSeccionComponent implements OnInit
       console.log(this.seccion)
     }
 
+    fnCancelar()
+    {
+      this.outputequedefini.emit();
+    }
   
 }
