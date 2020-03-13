@@ -11,7 +11,8 @@ export class ClaseListaResolver implements Resolve<any>
     }
 
     resolve() {
-        return this.clasesService.getClases().pipe(map(AllClases => AllClases))
+        //return this.clasesService.getClases().pipe(map(AllClases => AllClases))
+        return this.clasesService.getClases()
     }
 
 }

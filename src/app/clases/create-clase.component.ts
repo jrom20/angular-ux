@@ -39,9 +39,10 @@ export class CreateClaseComponent
 
     saveClase(formvalue){
         console.log(formvalue);
-        this.claseserv.saveClase(formvalue);
-        this.isFormDirty = false;
-        this.router.navigate(['/clases'])
+        this.claseserv.saveClase(formvalue).subscribe(() => {
+            this.isFormDirty = false;
+            this.router.navigate(['/clases'])
+        });
     }
 
     fnGoBack()
