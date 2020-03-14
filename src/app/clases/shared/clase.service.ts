@@ -1,19 +1,39 @@
 import { Injectable } from '@angular/core'
-import { Subject, Observable } from 'rxjs'
+import { Subject, Observable, of } from 'rxjs'
 import { IClase } from './clase.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ClaseService
 {
-    getClases(): Observable<IClase[]>{
+    /**
+     *
+     */
+    constructor(private http: HttpClient) {
         
+    }
+    
+    getClases(): Observable<IClase[]>{
+
+        return this.http.get<IClase[]>('/api/clases')
+        .pipe(catchError(this.errorHandler<IClase[]>('getClases', [])));
+
+        /*
         let subject = new Subject<IClase[]>()
         setTimeout(() => {
             subject.next(ClasesDisponible);
             subject.complete();
         }, 100);
 
-        return subject;
+        return subject;*/
+    }
+
+    private errorHandler<T> (operation = 'operation', result?: T){
+        return (error: any): Observable<T> => {
+            console.error(error);
+            return of(result as T)
+        }
     }
     
     getClasesbyid(id:number){
@@ -22,9 +42,15 @@ export class ClaseService
     }
 
     saveClase(nuevaClase){
-        nuevaClase.id = 564;
+        /*nuevaClase.id = 564;
         nuevaClase.secciones = [];
         ClasesDisponible.push(nuevaClase);
+        */
+        
+         let options = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
+         return this.http.post<IClase>('/api/clases', nuevaClase, options)
+         .pipe(catchError(this.errorHandler<IClase>('saveClase')));
+        
     }
     
 }
@@ -39,7 +65,11 @@ const ClasesDisponible: IClase[]  =
                 room: 'LSW',
                 campus: 'SPS'
             },
-            ImageUrl: '/assets/basic-shield.png'
+            ImageUrl: '/assets/basic-shield.png',
+            secciones: [
+                { id:1, name: 'PX-04', profesor: 'Juan Romero', duracion: '1 hora', descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus egestas nisi sem, eget posuere massa dictum quis. Nam laoreet quis urna id consequat. Donec' },
+                { id:2, name: 'PX-006', profesor: 'Juan Romero', duracion: '1 hora', descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus egestas nisi sem, eget posuere massa dictum quis. Nam laoreet quis urna id consequat. Donec' }
+            ]
         },
         {
             id: 2,

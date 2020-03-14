@@ -1,9 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import  { ClaseService } from "../shared/clase.service"
 import { ActivatedRoute } from "@angular/router"
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { ISecciones } from '../shared/clase.model';
 
 @Component({
+    selector: 'create-seccion',
     templateUrl: './create-seccion.component.html',
     styles: [`
     em {float:right; color:#E05C65; padding-left: 10px;}
@@ -21,19 +23,51 @@ export class CreateSeccionComponent implements OnInit
     profesor: FormControl
     duracion: FormControl
     descripcion: FormControl
-    seccionForm: FormGroup
 
+    seccionForm: FormGroup
+    seccion:ISecciones
+    @Output() outputequedefini = new EventEmitter()
+    
     constructor(private claseService: ClaseService, private actro: ActivatedRoute)
     {
 
     }
     
+    private palabrasNoValidas(control: FormControl): {[key:string]: any}
+    {
+        return control.value.includes('fresa')
+        ? {'palabrasNoValidas': 'fresa'}
+        : null;
+    }
+
     ngOnInit() {
-      this.descripcion = new FormControl('', [Validators.required, Validators.maxLength(10)])   
+      this.descripcion = new FormControl('', [Validators.required, Validators.maxLength(100)])   
+      this.profesor = new FormControl('', [Validators.required])   
+      this.duracion = new FormControl('', [Validators.required])   
+      this.name = new FormControl('', [Validators.required])   
+
       this.seccionForm = new FormGroup({
-        descripcion: this.descripcion
+        descripcion: this.descripcion,
+        name : this.name,
+        profesor: this.profesor,
+        duracion: this.duracion
       });
     }
 
+    fnSave(formvalue){
+      this.seccion = {
+        descripcion: formvalue.descripcion,
+        duracion: formvalue.duracion,
+        id: 0,
+        name: formvalue.name,
+        profesor: formvalue.profesor
+      }
+      console.log(this.seccion)
+    }
+
+    fnCancelar()
+    {
+      this.outputequedefini.emit();
+    }
   
 }

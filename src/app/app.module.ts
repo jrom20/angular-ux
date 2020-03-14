@@ -10,7 +10,8 @@ import {
   CreateClaseComponent,
   ClaseRouteActivator,
   ClaseListaResolver,
-  CreateSeccionComponent
+  CreateSeccionComponent,
+  SeccionListComponent
 } from './clases/index'
 
 
@@ -21,7 +22,7 @@ import { AppRoutes } from "./routes";;
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-
+import { HttpClientModule } from '@angular/common/http'
 
 
 @NgModule({
@@ -33,14 +34,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
     ClaseDetailsComponent,
     CreateClaseComponent,
     Error404Component,
-    CreateSeccionComponent
+    CreateSeccionComponent,
+    SeccionListComponent
   ],
   
   imports: [
     BrowserModule,
     RouterModule.forRoot(AppRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     ClaseService,
