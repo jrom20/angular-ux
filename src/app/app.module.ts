@@ -23,6 +23,7 @@ import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
+import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http'
     CreateClaseComponent,
     Error404Component,
     CreateSeccionComponent,
-    SeccionListComponent
+    SeccionListComponent,
+    CollapsibleWellComponent
   ],
   
   imports: [

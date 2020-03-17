@@ -20,8 +20,9 @@ export class ClaseDetailsComponent implements OnInit
     }
     
     ngOnInit(): void {
-
-        this.clase = this.claseService.getClasesbyid(+this.actro.snapshot.params['id'])
+        this.claseService.getClasesbyid(+this.actro.snapshot.params['id']).subscribe(data => {
+            this.clase = data;
+        });
     }
     
     AddSeccion()
@@ -34,4 +35,12 @@ export class ClaseDetailsComponent implements OnInit
         this.addMode = false;
     }
 
+    fnGuardar(nuevaSeccion)
+    {
+        this.claseService.saveSeccionByClaseId(this.clase.id, nuevaSeccion).subscribe(data => {
+            alert(data);
+            this.clase.secciones.push(nuevaSeccion);
+            this.addMode = false;
+        });
+    }
 }

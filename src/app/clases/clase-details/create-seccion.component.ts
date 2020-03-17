@@ -26,7 +26,8 @@ export class CreateSeccionComponent implements OnInit
 
     seccionForm: FormGroup
     seccion:ISecciones
-    @Output() outputequedefini = new EventEmitter()
+    @Output() opCancelarClick = new EventEmitter()
+    @Output() opGuardarClick = new EventEmitter()
     
     constructor(private claseService: ClaseService, private actro: ActivatedRoute)
     {
@@ -55,6 +56,7 @@ export class CreateSeccionComponent implements OnInit
     }
 
     fnSave(formvalue){
+      
       this.seccion = {
         descripcion: formvalue.descripcion,
         duracion: formvalue.duracion,
@@ -62,12 +64,14 @@ export class CreateSeccionComponent implements OnInit
         name: formvalue.name,
         profesor: formvalue.profesor
       }
-      console.log(this.seccion)
+
+      this.opGuardarClick.emit(this.seccion);
+      //api/clases/1/secciones
     }
 
     fnCancelar()
     {
-      this.outputequedefini.emit();
+      this.opCancelarClick.emit();
     }
   
 }
