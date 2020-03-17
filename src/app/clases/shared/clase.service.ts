@@ -36,9 +36,22 @@ export class ClaseService
         }
     }
     
-    getClasesbyid(id:number){
+    getClasesbyid(id:number): Observable<IClase>
+    {
+        return this.http.get<IClase>('/api/clases/' + id)
+        .pipe(catchError(this.errorHandler<IClase>('getClasesbyid')));
+        //return ClasesDisponible.find(clases => clases.id === id)
+    }
 
-        return ClasesDisponible.find(clases => clases.id === id)
+    saveSeccionByClaseId(idClase: number, nuevaSecion): Observable<string>
+    {
+        let options = { headers: new HttpHeaders({'Content-Type': 'application/json'}),
+            responseType: 'text' as 'json'
+        };
+
+        return this.http.post<string>('/api/clases/' + idClase+ '/secciones', nuevaSecion, options)
+        .pipe(catchError(this.errorHandler<string>('saveClase')));
+
     }
 
     saveClase(nuevaClase){
