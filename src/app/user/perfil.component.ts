@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Inject } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AuthService } from './auth.service'
 import { Router } from '@angular/router'
+import { Toastr, TOASTR_TOKEN } from '../common/toastr.service'
 
 @Component({
   templateUrl: './perfil.component.html',
@@ -21,13 +22,12 @@ export class PerfilComponent implements OnInit{
   lastName:FormControl
   perfilForm: FormGroup
 
-  constructor(public auth:AuthService, private router: Router) {
+  constructor(public auth:AuthService, private router: Router, @Inject(TOASTR_TOKEN) private toatr: Toastr) {
     //regex - regular expressions 
-    this.firstName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]*')]);
-    this.lastName = new FormControl('', Validators.required);
+    this.firstName = new FormControl(auth.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-Z]*')]);
+    this.lastName = new FormControl(auth.currentUser.lastName, Validators.required);
   }
   
-
   ngOnInit()
   {
       this.perfilForm = new FormGroup({
@@ -48,7 +48,8 @@ export class PerfilComponent implements OnInit{
   fnUpdate(formvalue){
     if(this.perfilForm.valid){
       this.auth.ActualizarUsuari(formvalue.firstName, formvalue.lastName);
-      this.router.navigate(['clases']);
+      this.toatr.success('Se actualizo el perfil');
+      //this.router.navigate(['clases']);
     }
   }
 }

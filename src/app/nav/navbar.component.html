@@ -21,11 +21,11 @@
           </div>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Buscar clase" aria-label="Search">
-        <button class="btn btn-default" >
+      <form class="form-inline my-2 my-lg-0" (ngSubmit)="buscarSecciones(textoABuscar)">
+        <input [(ngModel)]="textoABuscar" name="textoABuscar" class="form-control mr-sm-2" type="search" placeholder="Buscar clase" aria-label="Search">
+        <button class="btn btn-default" ux-modal-trigger>
             Buscar
-          </button>
+        </button>
       </form>
       <div style="padding-left: 50px;"></div>
       <div class="navbar-header navbar-right">
@@ -39,3 +39,9 @@
       </div>
     </div>
   </nav>
+
+  <ux-modal title="Secciones entradas">
+    <div class="list-group">
+      <a class="list-group-item" *ngFor="let seccion of foundSecciones" [routerLink]="['/clases', seccion?.id]">{{seccion.name}}</a>
+    </div>
+  </ux-modal>

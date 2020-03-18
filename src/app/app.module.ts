@@ -17,14 +17,19 @@ import {
 
 import { ClasesAppComponent } from './clases-app.component';
 import { NavBarComponent } from './nav/navbar.component';
-import { ToastrService } from './common/toastr.service'
+import { TOASTR_TOKEN, Toastr } from './common/toastr.service'
 import { AppRoutes } from "./routes";;
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
+import { JQ_TOKEN } from './common/jQuery.service';
+import { UXModalComponent } from './common/ux-modal.component';
+import { ModalTiggerDirective } from './common/modal-trigger.directive';
 
+let toastr:Toastr = window['toastr'];
+let jQuery:any = window['$'];
 
 @NgModule({
   declarations: [
@@ -37,7 +42,9 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
     Error404Component,
     CreateSeccionComponent,
     SeccionListComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    UXModalComponent,
+    ModalTiggerDirective
   ],
   
   imports: [
@@ -49,7 +56,8 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
   ],
   providers: [
     ClaseService,
-    ToastrService, 
+    { provide: TOASTR_TOKEN, useValue: toastr},
+    { provide: JQ_TOKEN, useValue: jQuery},
     ClaseRouteActivator,
     ClaseListaResolver,
     { provide: 'canDeactivateCrearClase', useValue: CheckFormStatus},
