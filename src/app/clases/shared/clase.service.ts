@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Subject, Observable, of } from 'rxjs'
-import { IClase } from './clase.model';
+import { IClase, ISecciones } from './clase.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
@@ -51,7 +51,32 @@ export class ClaseService
 
         return this.http.post<string>('/api/clases/' + idClase+ '/secciones', nuevaSecion, options)
         .pipe(catchError(this.errorHandler<string>('saveClase')));
+    }
 
+    SearchSecciones(text:string):Observable<ISecciones[]>
+    {
+        let resultados: ISecciones[] = [];
+        let textoAbuscar = text.toLocaleLowerCase();
+
+        ClasesDisponible.forEach(clase=>{
+
+            let matches = clase.secciones.filter(c=> c.name.toLocaleLowerCase().indexOf(textoAbuscar) > -1 );
+            
+            matches = matches.map((seccion:any) => {
+                seccion.id = clase.id;
+                return seccion;
+            });
+
+            resultados = resultados.concat(matches);
+        });
+
+        let subject = new Subject<ISecciones[]>()
+        setTimeout(() => {
+            subject.next(resultados);
+            subject.complete();
+        }, 100);
+
+        return subject;
     }
 
     saveClase(nuevaClase){
@@ -92,7 +117,8 @@ const ClasesDisponible: IClase[]  =
                 room: '305',
                 campus: 'SPS'
             },
-            ImageUrl: '/assets/basic-shield.png'
+            ImageUrl: '/assets/basic-shield.png',
+            secciones: []
         },
         {
             id: 3,
@@ -102,7 +128,8 @@ const ClasesDisponible: IClase[]  =
                 room: '211',
                 campus: 'SPS'
             },
-            ImageUrl: '/assets/basic-shield.png'
+            ImageUrl: '/assets/basic-shield.png',
+            secciones: []
         },
         {
             id: 4,
@@ -112,6 +139,7 @@ const ClasesDisponible: IClase[]  =
                 room: '310',
                 campus: 'SPS'
             },
-            ImageUrl: '/assets/basic-shield.png'
+            ImageUrl: '/assets/basic-shield.png',
+            secciones: []
         }
     ]
