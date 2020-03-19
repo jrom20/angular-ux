@@ -14,15 +14,24 @@ export class ClaseDetailsComponent implements OnInit
     clase:IClase
     addMode:boolean
 
-    constructor(private claseService: ClaseService, private actro: ActivatedRoute)
+    constructor(private claseService: ClaseService, private route: ActivatedRoute)
     {
 
     }
     
     ngOnInit(): void {
-        this.claseService.getClasesbyid(+this.actro.snapshot.params['id']).subscribe(data => {
-            this.clase = data;
+
+        this.route.params.subscribe(params =>{
+            let id = params["id"];
+                
+            this.claseService.getClasesbyid(+id).subscribe(data => {
+                this.clase = data;
+            });
         });
+/*
+        this.claseService.getClasesbyid(+this.route.snapshot.params['id']).subscribe(data => {
+            this.clase = data;
+        });*/
     }
     
     AddSeccion()
