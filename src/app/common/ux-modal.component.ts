@@ -1,10 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Inject, ViewChild, ElementRef } from "@angular/core";
+import { JQ_TOKEN } from './jQuery.service';
 
 @Component({
     selector: 'ux-modal',
     template: `
-    <div class="modal fade" id="ux-modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="{{elementId}}" #modalcontainer tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document" #modalcontainer>
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">{{title}}</h5>
@@ -12,7 +13,7 @@ import { Component, Input } from "@angular/core";
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" (click)="closeModal()">
                     <ng-content></ng-content>
                 </div>
             </div>
@@ -26,4 +27,17 @@ import { Component, Input } from "@angular/core";
 export class UXModalComponent
 {
     @Input() title:string
+    @Input() elementId:string
+    @ViewChild('modalcontainer') containerElem: ElementRef
+    /**
+     *
+     */
+    constructor(@Inject(JQ_TOKEN) private $: any) {
+        
+    }
+
+    closeModal(){
+        this.$(this.containerElem.nativeElement).modal('hide');
+        //this.$('#'+ this.elementId).modal('hide');
+    }
 }

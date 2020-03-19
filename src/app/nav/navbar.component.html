@@ -23,7 +23,7 @@
       </ul>
       <form class="form-inline my-2 my-lg-0" (ngSubmit)="buscarSecciones(textoABuscar)">
         <input [(ngModel)]="textoABuscar" name="textoABuscar" class="form-control mr-sm-2" type="search" placeholder="Buscar clase" aria-label="Search">
-        <button class="btn btn-default" ux-modal-trigger>
+        <button class="btn btn-default" ux-modal-trigger="searchResults">
             Buscar
         </button>
       </form>
@@ -40,7 +40,7 @@
     </div>
   </nav>
 
-  <ux-modal title="Secciones entradas">
+  <ux-modal title="Secciones entradas" elementId="searchResults">
     <div class="list-group">
       <a class="list-group-item" *ngFor="let seccion of foundSecciones" [routerLink]="['/clases', seccion?.id]">{{seccion.name}}</a>
     </div>
