@@ -27,6 +27,7 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { JQ_TOKEN } from './common/jQuery.service';
 import { UXModalComponent } from './common/ux-modal.component';
 import { ModalTiggerDirective } from './common/modal-trigger.directive';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 let toastr:Toastr = window['toastr'];
 let jQuery:any = window['$'];
@@ -52,7 +53,8 @@ let jQuery:any = window['$'];
     RouterModule.forRoot(AppRoutes),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     ClaseService,
